@@ -1,86 +1,52 @@
-# Customer Experience Analytics for Fintech Apps
+# Fintech Customer Experience Analytics 🇪🇹
 
-## Project Overview
-This project analyzes customer satisfaction for three major Ethiopian banks (CBE, BOA, Dashen) by scraping and processing user reviews from the Google Play Store. The goal is to identify key drivers of satisfaction and pain points using Natural Language Processing (NLP).
+A data engineering pipeline to scrape, analyze, and visualize customer sentiment for Ethiopian banking apps (CBE, BOA, Dashen) using NLP and PostgreSQL.
 
-## Features
-- **Data Collection**: Scrapes 1,200+ reviews using `google-play-scraper`.
-- **Preprocessing**: Cleans data, normalizes dates, and removes duplicates.
-- **Sentiment Analysis**: Uses `distilbert-base-uncased-finetuned-sst-2-english` to score reviews.
+## 📌 Project Overview
+**Omega Consultancy Challenge:** Analyze user reviews from the Google Play Store to identify key drivers of customer satisfaction and pain points.
 
-## Installation
-1. Clone the repository:
-   ```bash
-   git clone <your-repo-link>
-   ```
-2. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
+**Key Features:**
+*   **ETL Pipeline:** Scrapes data -> Cleans text -> Loads to SQL.
+*   **NLP:** Uses Hugging Face Transformers (`DistilBERT`) for sentiment analysis.
+*   **Database:** Stores structured data in PostgreSQL.
+*   **Visualization:** Generates automated reports on customer sentiment.
 
-## Usage
-1. Scrape Data:
-   ```bash
-   python scraper.py
-   ```
-   Output: `bank_reviews.csv`
-2. Run Sentiment Analysis:
-   ```bash
-   python sentiment_analysis.py
-   ```
-   Output: `bank_reviews_with_sentiment.csv`
+## 📂 Project Structure
+*   `scraper.py`: Extracts reviews from Google Play Store.
+*   `sentiment_analysis.py`: Applies BERT model and keyword clustering.
+*   `db_loader.py`: Connects to PostgreSQL and inserts processed data.
+*   `visualization.py`: Generates charts for reporting.
+*   `requirements.txt`: List of Python dependencies.
 
-## Methodology
-* **Scraping**: Targeted the "Newest" 500 reviews per bank to ensure relevance.
-* **NLP**: Utilized a pre-trained Hugging Face transformer model for high-accuracy sentiment detection.
+## 🚀 Setup & Usage
 
-## Author
-Eyu Birhanu - Omega Consultancy Data Analyst
+### 1. Prerequisites
+*   Python 3.9+
+*   PostgreSQL installed and running.
 
----
+### 2. Installation
+```bash
+git clone https://github.com/eyuBirhanu/fintech-reviews-analytics.git
+cd fintech-reviews-analytics
+pip install -r requirements.txt
+3. Database Setup
+Create a database named bank_reviews in PostgreSQL. Update the DB_PASS in db_loader.py with your password.
+4. Running the Pipeline
+code
+Bash
+# Step 1: Scrape Data
+python scraper.py
 
-### **Phase 6: Commit and Push to GitHub**
+# Step 2: Analyze Sentiment & Themes
+python sentiment_analysis.py
 
-Now that your files are ready (`scraper.py`, `sentiment_analysis.py`, `requirements.txt`, `README.md`, `.gitignore`), let's save them to Git.
+# Step 3: Load to Database
+python db_loader.py
 
-1.  **Add files:**
-    ```bash
-    git add .
-    ```
-2.  **Commit:**
-    ```bash
-    git commit -m "feat: implement scraping and basic sentiment analysis pipeline"
-    ```
-3.  **Push to GitHub:**
-    *   Go to GitHub.com -> Create New Repository -> Name it `fintech-reviews-analytics`.
-    *   Copy the URL (e.g., `https://github.com/YourUser/fintech-reviews-analytics.git`).
-    *   Run these commands in your terminal:
-    ```bash
-    git branch -M main
-    git remote add origin [https://github.com/YourUser/fintech-reviews-analytics.git](https://github.com/YourUser/fintech-reviews-analytics.git)
-    git push -u origin main
-    ```
-
----
-
-### **Phase 7: The Interim Report (Quick Guide)**
-
-You need a PDF report (max 4 pages). Open Word/Docs and write these sections:
-
-1.  **Title Page**: "Interim Report: Customer Experience Analytics for Fintech Apps".
-2.  **Introduction**:
-    *   "Objective: To scrape and analyze Google Play reviews for CBE, BOA, and Dashen to improve customer retention."
-    *   "Current Progress: Successfully established the data extraction pipeline and initial sentiment model."
-3.  **Data Collection Methodology**:
-    *   Tool used: `google-play-scraper`.
-    *   Target: 500 reviews per bank (Total ~1500).
-    *   Data fields: Review text, Rating, Date, Bank Name.
-4.  **Preliminary Findings (Look at your CSV to fill this)**:
-    *   "CBE has the highest volume of reviews."
-    *   "Initial scan shows frequent mention of 'connection' issues."
-5.  **Next Steps**:
-    *   "Refine sentiment analysis themes."
-    *   "Deploy PostgreSQL database."
-    *   "Generate final visualizations."
-
-**Save as PDF** and you are ready to submit!
+# Step 4: Generate Reports
+python visualization.py
+📊 Insights
+Top Complaint: Transaction failures and App Stability.
+Sentiment: ~65% Positive, ~35% Negative.
+👤 Author
+Eyu Birhanu - Data Analyst
